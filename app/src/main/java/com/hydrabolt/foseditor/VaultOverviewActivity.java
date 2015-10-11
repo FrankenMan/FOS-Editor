@@ -84,8 +84,8 @@ public class VaultOverviewActivity extends AppCompatActivity {
         vaultResources.put("RadAway", Double.parseDouble(vaultRadaways.getText().toString()));
         vaultResources.put("Nuka", Double.parseDouble(vaultCaps.getText().toString()));
 
-        int lunchboxesAmount = Integer.parseInt(vaultLunchboxes.getText().toString());
-        int handiesAmount = Integer.parseInt(vaultHandies.getText().toString());
+        long lunchboxesAmount = Long.parseLong(vaultLunchboxes.getText().toString());
+        long handiesAmount = Long.parseLong(vaultHandies.getText().toString());
 
         vaultData.put("LunchBoxesCount", lunchboxesAmount + handiesAmount);
 
