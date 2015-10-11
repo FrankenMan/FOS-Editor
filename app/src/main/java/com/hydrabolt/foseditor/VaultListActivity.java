@@ -37,6 +37,8 @@ public class VaultListActivity extends AppCompatActivity {
 
     public static VaultDecrypter vault1, vault2, vault3;
 
+    public static int currentVault = 1;
+
     String vaultPrefix = "/storage/emulated/0/Android/data/com.bethsoft.falloutshelter/files/Vault";
 
     @Override
@@ -116,6 +118,7 @@ public class VaultListActivity extends AppCompatActivity {
     public void openVault(int n){
         Intent intent = new Intent(VaultListActivity.this, VaultOverviewActivity.class);
 
+        currentVault = n;
         intent.putExtra("vaultNumber", n);
 
         VaultListActivity.this.startActivity(intent);

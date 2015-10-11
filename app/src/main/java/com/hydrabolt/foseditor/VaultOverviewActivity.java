@@ -34,9 +34,7 @@ public class VaultOverviewActivity extends AppCompatActivity {
         int vaultNum = getIntent().getIntExtra("vaultNumber", -2838);
 
         if(vaultNum == -2838)
-            vaultNum = vault;
-
-        vault = vaultNum;
+            vaultNum = VaultListActivity.currentVault;
 
         currentVault = VaultListActivity.getVault(vaultNum);
 
