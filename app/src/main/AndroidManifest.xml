@@ -31,6 +31,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.hydrabolt.foseditor.VaultListActivity" />
         </activity>
+        <activity
+            android:name=".VaultDwellersActivity"
+            android:label="@string/title_activity_vault_dwellers"
+            android:parentActivityName=".VaultOverviewActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hydrabolt.foseditor.VaultOverviewActivity" />
+        </activity>
     </application>
 
 </manifest>

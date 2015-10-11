@@ -92,4 +92,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_vault_dwellers">VaultDwellersActivity</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.hydrabolt.foseditor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,8 @@ public class VaultOverviewActivity extends AppCompatActivity {
 
     VaultDecrypter currentVault;
 
+    static int vault;
+
     EditText vaultName, vaultWater, vaultPower, vaultFood, vaultStimpaks, vaultRadaways, vaultLunchboxes, vaultCaps, vaultHandies;
 
     @Override
@@ -28,7 +31,12 @@ public class VaultOverviewActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        int vaultNum = getIntent().getIntExtra("vaultNumber", 666);
+        int vaultNum = getIntent().getIntExtra("vaultNumber", -2838);
+
+        if(vaultNum == -2838)
+            vaultNum = vault;
+
+        vault = vaultNum;
 
         currentVault = VaultListActivity.getVault(vaultNum);
 
@@ -54,11 +62,18 @@ public class VaultOverviewActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+
         if (item.getItemId() == R.id.action_save) {
             save();
         }
         if (item.getItemId() == R.id.action_dwellers) {
             Snackbar.make(findViewById(R.id.snackbarPosition), "Not Yet Available!", Snackbar.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(getApplicationContext(), VaultDwellersActivity.class);
+
+            intent.putExtra("vaultNumber", 1);
+
+            VaultOverviewActivity.this.startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
