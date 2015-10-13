@@ -35,7 +35,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/vaultButtonList">
+        android:id="@+id/vaultButtonList"
+        tools:visibility="gone">
 
         <Button
             android:layout_width="match_parent"
@@ -65,5 +66,15 @@
             style="@style/ButtonAppTheme"
             android:onClick="openVault3"/>
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Unknown Build"
+        android:id="@+id/versionNumber"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

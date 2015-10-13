@@ -1,6 +1,7 @@
 package com.hydrabolt.foseditor;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -64,6 +65,14 @@ public class VaultListActivity extends AppCompatActivity {
 
         buttonView.setVisibility(View.GONE);
         noVaultsFoundText.setVisibility(View.GONE);
+
+        TextView versionLabel = (TextView) findViewById(R.id.versionNumber);
+
+        try {
+            versionLabel.setText( "v " + getPackageManager().getPackageInfo(getPackageName(), 0).versionName );
+        } catch (PackageManager.NameNotFoundException e) {
+            versionLabel.setText( "Unknown Build" );
+        }
 
         startUp();
 

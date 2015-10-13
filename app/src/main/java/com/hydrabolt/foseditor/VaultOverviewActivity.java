@@ -89,6 +89,23 @@ public class VaultOverviewActivity extends AppCompatActivity {
         JSONObject vaultStorage = (JSONObject) vaultData.get("storage");
         JSONObject vaultResources = (JSONObject) vaultStorage.get("resources");
 
+        if(vaultName.getText().toString().matches("")) vaultName.setText("123");
+        if(vaultWater.getText().toString().matches("")) vaultWater.setText("2500");
+        if(vaultPower.getText().toString().matches("")) vaultPower.setText("2500");
+        if(vaultFood.getText().toString().matches("")) vaultFood.setText("2500");
+        if(vaultStimpaks.getText().toString().matches("")) vaultStimpaks.setText("500");
+        if(vaultRadaways.getText().toString().matches("")) vaultRadaways.setText("500");
+        if(vaultCaps.getText().toString().matches("")) vaultCaps.setText("2500000");
+        if(vaultLunchboxes.getText().toString().matches("")) vaultLunchboxes.setText("500");
+        if(vaultHandies.getText().toString().matches("")) vaultHandies.setText("500");
+
+        long lunchboxesAmount = Long.parseLong(vaultLunchboxes.getText().toString());
+        long handiesAmount = Long.parseLong(vaultHandies.getText().toString());
+
+        if(lunchboxesAmount + handiesAmount > 20000){
+            Snackbar.make(findViewById(R.id.snackbarPosition), "Crash expected!", Snackbar.LENGTH_SHORT).show();
+        }
+
         vaultData.put("VaultName", vaultName.getText().toString());
         vaultResources.put("Water", Double.parseDouble(vaultWater.getText().toString()));
         vaultResources.put("Energy", Double.parseDouble(vaultPower.getText().toString()));
@@ -96,9 +113,6 @@ public class VaultOverviewActivity extends AppCompatActivity {
         vaultResources.put("StimPack", Double.parseDouble(vaultStimpaks.getText().toString()));
         vaultResources.put("RadAway", Double.parseDouble(vaultRadaways.getText().toString()));
         vaultResources.put("Nuka", Double.parseDouble(vaultCaps.getText().toString()));
-
-        long lunchboxesAmount = Long.parseLong(vaultLunchboxes.getText().toString());
-        long handiesAmount = Long.parseLong(vaultHandies.getText().toString());
 
         vaultData.put("LunchBoxesCount", lunchboxesAmount + handiesAmount);
 
@@ -137,10 +151,10 @@ public class VaultOverviewActivity extends AppCompatActivity {
 
             JSONArray specials = (JSONArray) vault.get("LunchBoxesByType");
 
-            int handyAmount = 0, lunchboxCount = 0;
+            long handyAmount = 0, lunchboxCount = 0;
 
             for(Object x : specials){
-                long y = (long) x;
+                long y = resolveNumber(x);
                 if(y == 1){
                     handyAmount++;
                 }else{
@@ -155,6 +169,15 @@ public class VaultOverviewActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+    long resolveNumber(Object o){
+        if(o instanceof Integer){
+            return Long.valueOf((int) ((Integer) o).longValue());
+        }else if(o instanceof Long){
+            return ((Long) o).longValue();
+        }
+        return 123;
     }
 
 }
